@@ -66,7 +66,7 @@ const DashboardPage = () => {
     <div className="text-center text-xl h-3/4 bg-gray-100">
       <p className="mb-2 mt-2">Hi {session?.user.name} </p>
       {session.user.email === "maksimzorin10@gmail.com" ? (
-        <p>You're admin</p>
+        <p>You&apos;re admin</p>
       ) : (
         ""
       )}
