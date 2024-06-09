@@ -48,7 +48,7 @@ const DashboardPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ data }),
-    });
+    }, { cache: 'no-store' });
 
     const userInfo = await response.json();
     setData({

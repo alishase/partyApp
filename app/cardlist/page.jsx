@@ -1,28 +1,32 @@
-
+'use client'
 
 import { PrismaClient } from "@prisma/client";
 import PanelBtn from "../../components/PanelBtn";
-import Link from "next/link";
 import RefreshBtn from "@/components/RefreshBtn";
 import DeleteBtn from "@/components/DeleteBtn";
 import ChangeBtn from "@/components/ChangeBtn";
+import { useState, useEffect } from "react";
 
-const prisma = new PrismaClient();
 
-async function CardList() {
-  const cards = await prisma.card.findMany();
-  async function togglePaymentStatus(id, cPaid){
-    e.preventDefault()
-    console.log(cPaid, id)
-    // const updateCard = await prisma.card.update({
-    //   where: {
-    //     id: id,
-    //   },
-    //   data: {
-    //     paid: ,
-    //   },
-    // })
-  }
+
+function CardList() {
+  const [cards, setCards] = useState(null)
+  const [isLoading, setLoading] = useState(true)
+    // const fetchData = async () => {
+    //   const response = await fetch('http://localhost:3000/api/showCards', {method : 'GET'} ,{ cache: 'no-store' }); // Replace with your API endpoint
+    //   const result = response;
+    //   setCards(result);
+    // };
+
+    useEffect(() => {
+      fetch('http://localhost:3000/api/showCards', {method : 'GET'} ,{ cache: 'no-store' })
+      .then((res) => res.json())
+      .then((data) => {
+        setCards(data)
+        setLoading(false)
+      })
+    }, [])
+    if(isLoading) return <p className="text-center text-3xl">Loading...</p>
   return (
     <div>
       {cards.map((card) => (
