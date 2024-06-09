@@ -17,9 +17,9 @@ function CardList() {
     //   const result = response;
     //   setCards(result);
     // };
-
+    console.log(process.env.NEXT_PUBLIC_URL)
     useEffect(() => {
-      fetch(process.env.URL + '/api/showCards', {method : 'GET'} ,{ cache: 'no-store' })
+      fetch(process.env.NEXT_PUBLIC_URL + '/api/showCards', {method : 'GET'} ,{ cache: 'no-store' })
       .then((res) => res.json())
       .then((data) => {
         setCards(data)
