@@ -6,7 +6,6 @@ import DeleteBtn from "@/components/DeleteBtn";
 import ChangeBtn from "@/components/ChangeBtn";
 import { useState, useEffect } from "react";
 
-export const dynamic = 'force-dynamic'
 
 function CardList() {
   const [cards, setCards] = useState(null)
@@ -17,7 +16,7 @@ function CardList() {
     //   setCards(result);
     // };
     useEffect(() => {
-      fetch('/api/showCards', {method : 'GET'} ,{ cache: '-store' })
+      fetch('/api/showCards', {method : 'GET'} ,{ cache: 'no-store' })
       .then((res) => res.json())
       .then((data) => {
         setCards(data)
