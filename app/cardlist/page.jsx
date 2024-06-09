@@ -19,7 +19,7 @@ function CardList() {
     // };
 
     useEffect(() => {
-      fetch('http://localhost:3000/api/showCards', {method : 'GET'} ,{ cache: 'no-store' })
+      fetch(process.env.URL + '/api/showCards', {method : 'GET'} ,{ cache: 'no-store' })
       .then((res) => res.json())
       .then((data) => {
         setCards(data)
