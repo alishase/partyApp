@@ -1,13 +1,12 @@
 'use client'
 
-import { PrismaClient } from "@prisma/client";
 import PanelBtn from "../../components/PanelBtn";
 import RefreshBtn from "@/components/RefreshBtn";
 import DeleteBtn from "@/components/DeleteBtn";
 import ChangeBtn from "@/components/ChangeBtn";
 import { useState, useEffect } from "react";
 
-
+export const dynamic = 'force-dynamic'
 
 function CardList() {
   const [cards, setCards] = useState(null)
@@ -17,9 +16,8 @@ function CardList() {
     //   const result = response;
     //   setCards(result);
     // };
-    console.log(process.env.NEXT_PUBLIC_URL)
     useEffect(() => {
-      fetch('/api/showCards', {method : 'GET'} ,{ cache: 'no-store' })
+      fetch('/api/showCards', {method : 'GET'} ,{ cache: '-store' })
       .then((res) => res.json())
       .then((data) => {
         setCards(data)
