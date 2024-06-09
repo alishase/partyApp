@@ -10,11 +10,6 @@ import { useState, useEffect } from "react";
 function CardList() {
   const [cards, setCards] = useState(null)
   const [isLoading, setLoading] = useState(true)
-    // const fetchData = async () => {
-    //   const response = await fetch('http://localhost:3000/api/showCards', {method : 'GET'} ,{ cache: 'no-store' }); // Replace with your API endpoint
-    //   const result = response;
-    //   setCards(result);
-    // };
     useEffect(() => {
       fetch('/api/showCards', {method : 'GET'} ,{ cache: 'no-store' })
       .then((res) => res.json())
