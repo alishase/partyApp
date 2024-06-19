@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const DashboardPage = () => {
   const router = useRouter();
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
   const { data: session, status } = useSession();
   const [data, setData] = useState({
     people: "",
@@ -42,13 +42,17 @@ const DashboardPage = () => {
 
   async function addCard(e) {
     e.preventDefault();
-    const response = await fetch("/api/addCard", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      "/api/addCard",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data }),
       },
-      body: JSON.stringify({ data }),
-    }, { cache: 'no-store' });
+      { cache: "no-store" }
+    );
 
     const userInfo = await response.json();
     setData({
@@ -57,9 +61,9 @@ const DashboardPage = () => {
       date: "",
     });
     setSuccess(true);
-    setTimeout(()=>{
+    setTimeout(() => {
       setSuccess(false);
-    }, 3000)
+    }, 3000);
   }
 
   return (
@@ -139,9 +143,13 @@ const DashboardPage = () => {
               </button>
             </form>
           </div>
-          {
-            success ? <span className="border-2 border-green-600 bg-green-200 rounded-md py-2 px-5">Карта добавлена</span> : ''
-          }
+          {success ? (
+            <span className="border-2 border-green-600 bg-green-200 rounded-md py-2 px-5">
+              Карта добавлена
+            </span>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       {/* {
@@ -158,7 +166,7 @@ const DashboardPage = () => {
       <button
         className="text-primary hover:underline mb-7"
         onClick={() => {
-          signOut({ callbackUrl: "/login" });
+          signOut({ callbackUrl: "https://partyalishase.netlify.app/login" });
         }}
       >
         Log out
